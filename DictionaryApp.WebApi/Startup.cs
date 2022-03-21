@@ -30,6 +30,10 @@ namespace DictionaryApp.WebApi
             services.AddControllers();
             services.AddDbContext<AppDbContext>();
             services.AddTransient<IDictionaryServices, DictionaryServices>();
+            services.AddSwaggerDocument(config =>
+            {
+                config.Title = "Dictionary";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +54,9 @@ namespace DictionaryApp.WebApi
             {
                 endpoints.MapControllers();
             });
+
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
         }
     }
 }
