@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DictionaryApp.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220321182947_Initial")]
-    partial class Initial
+    [Migration("20220321203930_Initialize")]
+    partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

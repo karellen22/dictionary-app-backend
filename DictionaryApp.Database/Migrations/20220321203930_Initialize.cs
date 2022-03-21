@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DictionaryApp.Database.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Initialize : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +11,7 @@ namespace DictionaryApp.Database.Migrations
                 name: "DictionaryEntries",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NewId()"),
                     English = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Hungarian = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Spanish = table.Column<string>(type: "nvarchar(max)", nullable: true),
