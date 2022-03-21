@@ -32,7 +32,10 @@ namespace DictionaryApp.WebApi.Controllers
         [HttpGet("{englishWord}", Name = "GetEnglishHungarianTranslation")]
         public IActionResult GetEnglishHungarianTranslation(string englishWord)
         {
-            return Ok(_dictionaryServices.GetEnglishHungarianTranslation(englishWord).Hungarian);
+            var entry = _dictionaryServices.GetEnglishHungarianTranslation(englishWord);
+            if (entry != default)
+                return Ok(entry.Hungarian);
+            return BadRequest($"Word not found in dictionary: {englishWord}");
         }
     }
 }

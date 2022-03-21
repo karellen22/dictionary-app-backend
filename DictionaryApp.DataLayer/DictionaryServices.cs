@@ -22,7 +22,7 @@ namespace DictionaryApp.DataLayer
 
         public DictionaryEntry GetEnglishHungarianTranslation(string wordToLookFor)
         {
-            return _context.DictionaryEntries.First(entry => entry.English.ToLower() == wordToLookFor.ToLower());
+            return _context.DictionaryEntries.FirstOrDefault(entry => entry.English.ToLower() == wordToLookFor.ToLower());
         }
     }
 }
