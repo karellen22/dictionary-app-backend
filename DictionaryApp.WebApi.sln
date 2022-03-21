@@ -5,7 +5,9 @@ VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DictionaryApp.WebApi", "DictionaryApp.WebApi\DictionaryApp.WebApi.csproj", "{7D6283B5-C569-47C4-B5E9-3ED462241C7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionaryApp.Database", "DictionaryApp.Database\DictionaryApp.Database.csproj", "{64762B27-8C63-43CE-B48B-CD4A22B757F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DictionaryApp.Database", "DictionaryApp.Database\DictionaryApp.Database.csproj", "{64762B27-8C63-43CE-B48B-CD4A22B757F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionaryApp.DataLayer", "DictionaryApp.DataLayer\DictionaryApp.DataLayer.csproj", "{03813B84-7B8A-4F5E-8C6A-08E775DCB431}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{64762B27-8C63-43CE-B48B-CD4A22B757F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64762B27-8C63-43CE-B48B-CD4A22B757F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64762B27-8C63-43CE-B48B-CD4A22B757F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03813B84-7B8A-4F5E-8C6A-08E775DCB431}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03813B84-7B8A-4F5E-8C6A-08E775DCB431}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03813B84-7B8A-4F5E-8C6A-08E775DCB431}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03813B84-7B8A-4F5E-8C6A-08E775DCB431}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

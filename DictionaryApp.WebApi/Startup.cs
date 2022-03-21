@@ -1,4 +1,5 @@
 using DictionaryApp.Database;
+using DictionaryApp.DataLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,7 @@ namespace DictionaryApp.WebApi
         {
             services.AddControllers();
             services.AddDbContext<AppDbContext>();
+            services.AddTransient<IDictionaryServices, DictionaryServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
