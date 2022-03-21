@@ -19,5 +19,10 @@ namespace DictionaryApp.DataLayer
         {
             return _context.DictionaryEntries.ToList();
         }
+
+        public DictionaryEntry GetEnglishHungarianTranslation(string wordToLookFor)
+        {
+            return _context.DictionaryEntries.First(entry => entry.English == wordToLookFor);
+        }
     }
 }

@@ -27,5 +27,12 @@ namespace DictionaryApp.WebApi.Controllers
         {
             return Ok(_dictionaryServices.GetDictionaryEntries());
         }
+
+        // M: Returns Hungarian translation.
+        [HttpGet("{englishWord}", Name = "GetEnglishHungarianTranslation")]
+        public IActionResult GetEnglishHungarianTranslation(string englishWord)
+        {
+            return Ok(_dictionaryServices.GetEnglishHungarianTranslation(englishWord).Hungarian);
+        }
     }
 }
