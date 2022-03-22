@@ -34,6 +34,17 @@ namespace DictionaryApp.WebApi
             {
                 config.Title = "Dictionary";
             });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("DictionaryPolicy",
+                    builder =>
+                    {
+                        builder.WithOrigins("*")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +58,8 @@ namespace DictionaryApp.WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("DictionaryPolicy");
 
             app.UseAuthorization();
 
