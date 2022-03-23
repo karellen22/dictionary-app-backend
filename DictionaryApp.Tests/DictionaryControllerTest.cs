@@ -51,35 +51,35 @@ namespace DictionaryApp.Tests
         }
 
         [Test]
-        [TestCase("English", "Hungarian")]
-        [TestCase("enGliSh", "Hungarian")]
-        [TestCase("Last Name", "Vezetéknév")]
-        public void GetEnglishHungarianTranslation_WhenMethodCalledWithExistingWord_ReturnsCorrectEntry(string englishWord, string hungarianWord)
+        [TestCase("English", "Hungarian", "English", "Hungarian")]
+        [TestCase("English", "Hungarian", "enGliSh", "Hungarian")]
+        [TestCase("English", "Hungarian", "Last Name", "Vezetéknév")]
+        public void GetTranslation_WhenMethodCalledWithExistingWord_ReturnsCorrectEnglishHungarianTranslation(string fromLanguage, string toLanguage, string phrase, string hungarianWord)
         {
-            var okObjectResult = _controller.GetEnglishHungarianTranslation(englishWord) as OkObjectResult;
+            var okObjectResult = _controller.GetTranslation(fromLanguage, toLanguage, phrase) as OkObjectResult;
             var dictionaryEntry = okObjectResult.Value as string;
             Assert.AreEqual(hungarianWord, dictionaryEntry);
 
         }
 
         [Test]
-        [TestCase("this one doesn't exist")]
-        [TestCase("this one neither")]
-        public void GetEnglishHungarianTranslation_WhenMethodCalledWithNonExistingWord_ReturnsNonOk(string englishWord)
+        [TestCase("English", "Hungarian", "this one doesn't exist")]
+        [TestCase("English", "Hungarian", "this one neither")]
+        public void GetTranslation_WhenMethodCalledWithNonExistingWord_ReturnsNotFound(string fromLanguage, string toLanguage, string phrase)
         {
-            var dictionaryEntry = _controller.GetEnglishHungarianTranslation(englishWord);
-            Assert.IsInstanceOf<BadRequestObjectResult>(dictionaryEntry);
+            var dictionaryEntry = _controller.GetTranslation(fromLanguage, toLanguage, phrase);
+            Assert.IsInstanceOf<NotFoundObjectResult>(dictionaryEntry);
         }
 
         [Test]
-        [TestCase("this one doesn't exist")]
-        [TestCase("this one neither")]
-        public void GetEnglishHungarianTranslation_WhenMethodCalledWithNonExistingWord_ReturnsCorrectErrorMessage(string englishWord)
+        [TestCase("English", "Hungarian", "this one doesn't exist")]
+        [TestCase("English", "Hungarian", "this one neither")]
+        public void GetTranslation_WhenMethodCalledWithNonExistingWord_ReturnsCorrectErrorMessage(string fromLanguage, string toLanguage, string phrase)
         {
-            var dictionaryEntry = _controller.GetEnglishHungarianTranslation(englishWord);
-            var okResult = dictionaryEntry as BadRequestObjectResult;
+            var dictionaryEntry = _controller.GetTranslation(fromLanguage, toLanguage, phrase);
+            var notFound = dictionaryEntry as NotFoundObjectResult;
 
-            Assert.AreEqual($"Word not found in dictionary: {englishWord}", okResult.Value);
+            Assert.AreEqual($"Word or phrase not found in dictionary: {phrase}", notFound.Value);
         }
     }
 }
