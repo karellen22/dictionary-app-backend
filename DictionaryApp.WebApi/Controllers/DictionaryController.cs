@@ -25,17 +25,35 @@ namespace DictionaryApp.WebApi.Controllers
         [HttpGet]
         public IActionResult GetDictionaryEntries()
         {
-            return Ok(_dictionaryServices.GetDictionaryEntries());
+            try
+            {
+                _logger.Log(LogLevel.Information, "GetDictionaryEntries was called");
+                return Ok(_dictionaryServices.GetDictionaryEntries());
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return Problem(); 
+            }
         }
 
         // M: Returns translation.
         [HttpGet("{fromLanguage}/{toLanguage}/{phrase}", Name = "GetTranslation")]
         public IActionResult GetTranslation(string fromLanguage, string toLanguage, string phrase)
         {
-            var entry = _dictionaryServices.GetTranslation(fromLanguage, toLanguage, phrase);
-            if (entry != default)
-                return Ok(entry);
-            return NotFound($"Word or phrase not found in dictionary: {phrase}");
+            try
+            {
+                _logger.Log(LogLevel.Information, "GetTranslation was called with parameters: {0}, {1}, {2}", fromLanguage, toLanguage, phrase);
+                var entry = _dictionaryServices.GetTranslation(fromLanguage, toLanguage, phrase);
+                if (entry != default)
+                    return Ok(entry);
+                return NotFound($"Word or phrase not found in dictionary: {phrase}");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return Problem();
+            }
         }
     }
 }
