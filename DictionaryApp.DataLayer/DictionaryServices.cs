@@ -45,6 +45,9 @@ namespace DictionaryApp.DataLayer
                     break;
             }
 
+            if (dictionaryEntry == default)
+                return default;
+
             switch (toLanguage)
             {
                 case "English":

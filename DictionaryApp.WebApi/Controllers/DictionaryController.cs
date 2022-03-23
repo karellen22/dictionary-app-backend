@@ -28,8 +28,8 @@ namespace DictionaryApp.WebApi.Controllers
             return Ok(_dictionaryServices.GetDictionaryEntries());
         }
 
-        // M: Returns Hungarian translation.
-        [HttpGet("{fromLanguage}/{toLanguage}/{phrase}", Name = "GetEnglishHungarianTranslation")]
+        // M: Returns translation.
+        [HttpGet("{fromLanguage}/{toLanguage}/{phrase}", Name = "GetTranslation")]
         public IActionResult GetTranslation(string fromLanguage, string toLanguage, string phrase)
         {
             var entry = _dictionaryServices.GetTranslation(fromLanguage, toLanguage, phrase);
