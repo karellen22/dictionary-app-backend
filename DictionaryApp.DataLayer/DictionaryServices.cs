@@ -48,21 +48,15 @@ namespace DictionaryApp.DataLayer
             if (dictionaryEntry == default)
                 return default;
 
-            switch (toLanguage)
+            return toLanguage switch
             {
-                case "English":
-                    return dictionaryEntry.English;
-                case "Hungarian":
-                    return dictionaryEntry.Hungarian;
-                case "Spanish":
-                    return dictionaryEntry.Spanish;
-                case "Chinese":
-                    return dictionaryEntry.Chinese;
-                case "Portugese":
-                    return dictionaryEntry.Portugese;
-                default:
-                    return default;
-            }
+                "English" => dictionaryEntry.English,
+                "Hungarian" => dictionaryEntry.Hungarian,
+                "Spanish" => dictionaryEntry.Spanish,
+                "Chinese" => dictionaryEntry.Chinese,
+                "Portugese" => dictionaryEntry.Portugese,
+                _ => default,
+            };
         }
     }
 }
