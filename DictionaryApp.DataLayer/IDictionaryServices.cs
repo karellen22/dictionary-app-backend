@@ -6,6 +6,6 @@ namespace DictionaryApp.DataLayer
     public interface IDictionaryServices
     {
         List<DictionaryEntry> GetDictionaryEntries();
-        DictionaryEntry GetEnglishHungarianTranslation(string wordToLookFor);
+        string GetTranslation(string fromLanguage, string toLanguage, string wordToLookFor);
     }
 }

@@ -20,9 +20,46 @@ namespace DictionaryApp.DataLayer
             return _context.DictionaryEntries.ToList();
         }
 
-        public DictionaryEntry GetEnglishHungarianTranslation(string wordToLookFor)
+        public string GetTranslation(string fromLanguage, string toLanguage, string phrase)
         {
-            return _context.DictionaryEntries.FirstOrDefault(entry => entry.English.ToLower() == wordToLookFor.ToLower());
+            var dictionaryEntry = new DictionaryEntry();
+
+            switch (fromLanguage)
+            {
+                case "English":
+                    dictionaryEntry = _context.DictionaryEntries.FirstOrDefault(entry => entry.English.ToLower() == phrase.ToLower());
+                    break;
+                case "Hungarian":
+                    dictionaryEntry = _context.DictionaryEntries.FirstOrDefault(entry => entry.Hungarian.ToLower() == phrase.ToLower());
+                    break;
+                case "Spanish":
+                    dictionaryEntry = _context.DictionaryEntries.FirstOrDefault(entry => entry.Spanish.ToLower() == phrase.ToLower());
+                    break;
+                case "Chinese":
+                    dictionaryEntry = _context.DictionaryEntries.FirstOrDefault(entry => entry.Chinese.ToLower() == phrase.ToLower());
+                    break;
+                case "Portugese":
+                    dictionaryEntry = _context.DictionaryEntries.FirstOrDefault(entry => entry.Portugese.ToLower() == phrase.ToLower());
+                    break;
+                default:
+                    break;
+            }
+
+            switch (toLanguage)
+            {
+                case "English":
+                    return dictionaryEntry.English;
+                case "Hungarian":
+                    return dictionaryEntry.Hungarian;
+                case "Spanish":
+                    return dictionaryEntry.Spanish;
+                case "Chinese":
+                    return dictionaryEntry.Chinese;
+                case "Portugese":
+                    return dictionaryEntry.Portugese;
+                default:
+                    return default;
+            }
         }
     }
 }

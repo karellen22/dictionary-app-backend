@@ -29,13 +29,13 @@ namespace DictionaryApp.WebApi.Controllers
         }
 
         // M: Returns Hungarian translation.
-        [HttpGet("{englishWord}", Name = "GetEnglishHungarianTranslation")]
-        public IActionResult GetEnglishHungarianTranslation(string englishWord)
+        [HttpGet("{fromLanguage}/{toLanguage}/{phrase}", Name = "GetEnglishHungarianTranslation")]
+        public IActionResult GetTranslation(string fromLanguage, string toLanguage, string phrase)
         {
-            var entry = _dictionaryServices.GetEnglishHungarianTranslation(englishWord);
+            var entry = _dictionaryServices.GetTranslation(fromLanguage, toLanguage, phrase);
             if (entry != default)
-                return Ok(entry.Hungarian);
-            return NotFound($"Word or phrase not found in dictionary: {englishWord}");
+                return Ok(entry);
+            return NotFound($"Word or phrase not found in dictionary: {phrase}");
         }
     }
 }

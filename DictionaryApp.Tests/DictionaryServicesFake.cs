@@ -27,7 +27,7 @@ namespace DictionaryApp.Tests
             return _dictionary;
         }
 
-        public DictionaryEntry GetEnglishHungarianTranslation(string wordToLookFor)
+        public DictionaryEntry GetTranslation(string wordToLookFor)
         {
             return _dictionary.FirstOrDefault(entry => entry.English.ToLower() == wordToLookFor.ToLower());
         }
