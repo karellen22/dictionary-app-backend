@@ -35,7 +35,7 @@ namespace DictionaryApp.WebApi.Controllers
             var entry = _dictionaryServices.GetEnglishHungarianTranslation(englishWord);
             if (entry != default)
                 return Ok(entry.Hungarian);
-            return BadRequest($"Word not found in dictionary: {englishWord}");
+            return NotFound($"Word or phrase not found in dictionary: {englishWord}");
         }
     }
 }
