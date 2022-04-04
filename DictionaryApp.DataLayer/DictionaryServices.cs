@@ -15,9 +15,31 @@ namespace DictionaryApp.DataLayer
             _context = appDbContext;
         }
 
+        public DictionaryEntry EditDictionaryEntry(DictionaryEntry dictionaryEntry)
+        {
+            var entryToEdit = _context.DictionaryEntries.FirstOrDefault(x => x.Guid == dictionaryEntry.Guid);
+            if (entryToEdit == default)
+                return null;
+
+            entryToEdit.English = dictionaryEntry.English;
+            entryToEdit.Hungarian = dictionaryEntry.Hungarian;
+            entryToEdit.Spanish = dictionaryEntry.Spanish;
+            entryToEdit.Chinese = dictionaryEntry.Chinese;
+            entryToEdit.Portugese = dictionaryEntry.Portugese;
+
+            _context.SaveChanges();
+
+            return entryToEdit;
+        }
+
         public List<DictionaryEntry> GetDictionaryEntries()
         {
             return _context.DictionaryEntries.ToList();
+        }
+
+        public DictionaryEntry GetDictionaryEntry(string guid)
+        {
+            return _context.DictionaryEntries.FirstOrDefault(x => x.Guid.ToString() == guid);
         }
 
         public string GetTranslation(string fromLanguage, string toLanguage, string phrase)
@@ -57,6 +79,15 @@ namespace DictionaryApp.DataLayer
                 "Portugese" => dictionaryEntry.Portugese,
                 _ => default,
             };
+        }
+
+        public DictionaryEntry PostDictionaryEntry(DictionaryEntry dictionaryEntry)
+        {
+            dictionaryEntry.Guid = Guid.NewGuid();
+            _context.DictionaryEntries.Add(dictionaryEntry);
+            _context.SaveChanges();
+
+            return dictionaryEntry;
         }
     }
 }

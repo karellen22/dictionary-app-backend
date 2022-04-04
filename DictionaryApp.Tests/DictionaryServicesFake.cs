@@ -22,9 +22,19 @@ namespace DictionaryApp.Tests
             };
         }
 
+        public DictionaryEntry EditDictionaryEntry(DictionaryEntry dictionaryEntry)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<DictionaryEntry> GetDictionaryEntries()
         {
             return _dictionary;
+        }
+
+        public DictionaryEntry GetDictionaryEntry(string guid)
+        {
+            throw new NotImplementedException();
         }
 
         public DictionaryEntry GetTranslation(string wordToLookFor)

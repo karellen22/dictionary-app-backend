@@ -1,4 +1,5 @@
-﻿using DictionaryApp.DataLayer;
+﻿using DictionaryApp.Database.Models;
+using DictionaryApp.DataLayer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -34,6 +35,54 @@ namespace DictionaryApp.WebApi.Controllers
             {
                 _logger.LogError(ex.Message);
                 return Problem(); 
+            }
+        }
+
+        // M: Returns single dictionary entry.
+        [HttpGet("entry")]
+        public IActionResult GetDictionaryEntry(string guid)
+        {
+            try
+            {
+                _logger.Log(LogLevel.Information, "GetDictionaryEntry was called with guid: {0}.", guid);
+                return Ok(_dictionaryServices.GetDictionaryEntry(guid));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return Problem();
+            }
+        }
+
+        // M: Put single dictionary entry.
+        [HttpPut("entry")]
+        public IActionResult PutDictionaryEntry(DictionaryEntry dictionaryEntry)
+        {
+            try
+            {
+                _logger.Log(LogLevel.Information, "PutDictionaryEntry was called with parameters: {0}", dictionaryEntry.ToString());
+                return Ok(_dictionaryServices.EditDictionaryEntry(dictionaryEntry));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return Problem();
+            }
+        }
+
+        // M: Post new dictionary entry.
+        [HttpPost("entry")]
+        public IActionResult PostDictionaryEntry(DictionaryEntry dictionaryEntry)
+        {
+            try
+            {
+                _logger.Log(LogLevel.Information, "PostDictionaryEntry was called with parameters: {0}", dictionaryEntry.ToString());
+                return Ok(_dictionaryServices.PostDictionaryEntry(dictionaryEntry));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return Problem();
             }
         }
 

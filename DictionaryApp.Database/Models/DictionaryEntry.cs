@@ -14,5 +14,9 @@ namespace DictionaryApp.Database.Models
         public string Spanish { get; set; }
         public string Chinese { get; set; }
         public string Portugese { get; set; }
+        public override string ToString()
+        {
+            return $"Guid: {Guid}, English: {English}, Hungarian: {Hungarian}, Spanish: {Spanish}, Chinese: {Chinese}, Portugese: {Portugese}";
+        }
     }
 }
